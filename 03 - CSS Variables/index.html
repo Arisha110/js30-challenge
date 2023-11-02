@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Scoped CSS Variables and JS</title>
+  <link rel="icon" href="https://fav.farm/🔥" />
+</head>
+
+<body>
+  <h2>Update CSS Variables with <span class="h1">JS</span></h2>
+
+  <div class="controls">
+    <label for="spacing">Spacing:</label>
+    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+    <label for="blur">Blur:</label>
+    <input id="blur" type="range" name="blur" min="0" max="25" value="0" data-sizing="px">
+
+    <label for="base">Base Color</label>
+    <input id="base" type="color" name="base" value="#ffc600">
+
+     <div class="bg" >
+    <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500" class="pic" >
+
+  </div>
+  </div>
+  
+ 
+
+  <style>
+    /*
+      misc styles, nothing to do with CSS variables
+    */
+
+    body {
+      text-align: center;
+      background: #193549;
+      color: white;
+      font-family: 'helvetica neue', sans-serif;
+      font-weight: 100;
+      font-size: 50px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .controls {
+      margin-bottom: 50px;
+    }
+
+    input {
+      width: 100px;
+    }
+    .bg{
+      background-color: #ffc600;
+      width: 1000px;
+      height: 600px;
+      margin-top: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+
+  <script>
+
+    const image = document.querySelector('.pic');
+    const blurRange = document.querySelector('#blur');
+    const base = document.querySelector('#base');
+    const JS = document.querySelector('.h1');
+    let background= document.querySelector('.bg');
+
+    blurRange.addEventListener('change', function () {
+      let blurValue = blurRange.value;
+      console.log(blurValue);
+      image.style.filter = `blur(${blurValue}px)`;
+    })
+
+    function colorHandler(){
+      let color= base.value;
+      console.log(color);
+      JS.style.color= color;  
+      background.style.backgroundColor= color;
+    }
+    base.addEventListener('change', colorHandler);
+    base.addEventListener('click', colorHandler);
+    
+
+  </script>
+
+</body>
+
+</html>
